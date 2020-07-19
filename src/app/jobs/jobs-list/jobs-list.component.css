@@ -1,0 +1,20 @@
+.tableHeader {
+    display: flex;
+    width: 100%;
+    background-color: rgb(6, 234, 250);
+}
+
+.tableHeader p {
+    width: 19.7%;
+    text-align: center;
+}
+
+.jobItemContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+::ng-deep .cdk-overlay-container {
+    z-index: 1200 !important;
+  }

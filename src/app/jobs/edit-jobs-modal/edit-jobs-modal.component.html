@@ -1,0 +1,91 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Edit Job</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+        <form id="add-edit-jobs" #f="ngForm" (ngSubmit)="onSubmit(f)" #form>  
+            <div class="row">
+      
+              <div class="col-sm-12 form-group">
+                <label for="company">Company</label>
+                <input
+                  type="text"
+                  id="company"
+                  class="form-control"
+                  size="120"
+                  max="120"
+                  name="company"
+                  #company="ngModel"
+                  [ngModel]="selectedJob.company"
+                  required
+                  >
+              </div>
+      
+              <div class="col-sm-12 form-group">
+                <label for="role">Role</label>
+                <input
+                  type="text"
+                  id="role"
+                  class="form-control"
+                  size="120"
+                  max="255"
+                  name="role"
+                  #role="ngModel"
+                  [ngModel]="selectedJob.role"
+                  required
+                  >
+              </div>
+      
+              <div class="col-sm-12 form-group">
+                <label for="location">Location</label>
+                <input
+                  type="text"
+                  id="location"
+                  class="form-control"
+                  size="150"
+                  max="255"
+                  name="location"
+                  #location="ngModel"
+                  [ngModel]="selectedJob.location"
+                  required
+                  >
+              </div>
+              <div class="col-sm-12 form-group">
+                <label for="haveInterview">Interview Scheduled</label>
+                <input
+                  type="checkbox"
+                  id="haveInterview"
+                  class="form-control"
+                  name="haveInterview"
+                  #haveInterview="ngModel"
+                  [ngModel]="selectedJob.haveInterview"
+                  >
+              </div>
+              <div class="col-sm-12 form-group" *ngIf="haveInterview.value">
+                <label for="interviewDate">Interview Date</label>
+                <br />
+                  <input 
+                  matInput 
+                  [matDatepicker]="picker"
+                  id="interviewDate"
+                  name="interviewDate"
+                  #date="ngModel"
+                  [ngModel]="selectedJob.interviewDate"
+                  
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+              </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="company.errors?.required || role.errors?.required || location.errors?.required">Company, Role, Location and Interview Scheduled are required fields</div> 
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-outline-success">Save</button>
+              <button type="button" class="btn btn-outline-danger" (click)="modal.close()">Close</button>
+          </div>
+          </form>
+    </div>
+  </ng-template>
+  <button class="btn btn-outline-success mb-2 mr-2" (click)="openModal(content)">Edit Selected Job</button>

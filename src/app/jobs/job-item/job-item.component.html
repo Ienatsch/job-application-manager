@@ -1,1 +1,13 @@
-<p>job-item works!</p>
+<div class="jobItemContainer">
+    <div class="jobItem p-3">
+        <p>{{job.company}}</p>
+        <p>{{job.role}}</p>
+        <p>{{job.location}}</p>
+        <input class="mt-1" type="checkbox" [checked]="job.haveInterview" disabled>
+        <p *ngIf="job.haveInterview">{{job.interviewDate.getMonth() + 1}}/{{job.interviewDate.getDate()}}/{{job.interviewDate.getFullYear()}}</p>
+        <!-- Aligns content -->
+        <p *ngIf="!job.haveInterview"></p>
+        <!-- <button type="button" (click)="onEdit(job)">Edit</button> -->
+        <button type="button" class="btn btn-danger" (click)="onDelete(job.jobId)">X</button>
+    </div>
+</div>

@@ -1,1 +1,24 @@
-<p>jobs-list works!</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="pad-left-right">
+        <h1 class="text-center title">Application Manager</h1>
+        <job-manager-add-edit-jobs-modal class="ml-2"></job-manager-add-edit-jobs-modal>
+        <job-manager-edit-jobs-modal [selectedJob]="selectedJob" *ngIf="selectedJob"></job-manager-edit-jobs-modal>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="center-panel">
+        <div class="tableHeader  p-3">
+          <p>Company</p>
+          <p>Role</p>
+          <p>Location</p>
+          <p>Interview Scheduled</p>
+          <p>Interview Date</p>
+        </div>
+        <div class="jobItemContainer">
+          <job-manager-job-item [job]="job" *ngFor="let job of jobs" (click)="selectJob(job)"></job-manager-job-item>
+        </div>
+      </div>
+    </div>
+  
+  </div>
